@@ -1,0 +1,37 @@
+// ====================================================================
+// BILLING ERP MOBILE APP - FIREBASE FIRESTORE SECURITY RULES
+// Copy and paste this script into your Firebase Console -> Firestore Database -> Rules
+// ====================================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // For fast prototyping, allow read and write operations from all public clients.
+    // WARNING: In production, secure this by enforcing authentication!
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+    
+    match /bills/{billId} {
+      allow read, write: if true;
+    }
+    
+    match /bill_items/{itemId} {
+      allow read, write: if true;
+    }
+    
+    match /payments/{paymentId} {
+      allow read, write: if true;
+    }
+    
+    match /business_profile/{profileId} {
+      allow read, write: if true;
+    }
+    
+    // Fallback general rules
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
